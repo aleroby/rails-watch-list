@@ -10,7 +10,60 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column min-vh-100">
+    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/lists">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Clapboard.svg/64px-Clapboard.svg.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <%= link_to "New List", new_list_path, class:"nav-link  ms-3" %>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">My Lists</a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <% @nav_lists.each do |list| %>
+                  <%= link_to list.name, list_path(list), class:"dropdown-item" %>
+                <% end %>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <img class="avatar dropdown-toggle navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="">
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
+
+    <footer class="bg-dark text-white mt-4 border-top">
+      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-4 py-4">
+        <div class="d-flex align-items-center gap-4">
+          <a href="#" class="link-light fs-3 opacity-75"><i class="fab fa-github"></i></a>
+          <a href="#" class="link-light fs-3 opacity-75"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="link-light fs-3 opacity-75"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="link-light fs-3 opacity-75"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="link-light fs-3 opacity-75"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <p class="mb-0 text-white-50">
+          This app was made with <i class="fas fa-heart text-danger"></i> by aleroby
+        </p>
+      </div>
+    </footer>
+
   </body>
 </html>

@@ -1,0 +1,12 @@
+<div class="container w-50 mt-4 p-3 shadow bg-white rounded-3 ">
+  <div class="d-flex">
+    <h2>New Bookmark en <%= @list.name %></h2>
+  </div>
+  <hr>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie, prompt: "Select a movie" %>
+    <%= f.input :comment %>
+    <%= f.submit "Create", class:"btn btn-primary" %>
+    <%= link_to "Cancel", lists_path, class: "btn btn-warning text-decoration-none" %>
+  <% end %>
+</div>

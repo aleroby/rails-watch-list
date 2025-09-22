@@ -1,0 +1,30 @@
+<div
+  class="banner d-flex align-items-center py-5"
+  style="min-height:75vh; min-height:75dvh; background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+    url(https://upload.wikimedia.org/wikipedia/commons/d/d3/8_mm_Kodak_safety_film_reel_06.jpg)
+    center/cover no-repeat;">
+  <div class="container text-white">
+    <h1 class="display-5 fw-bold mb-2">Your movies, perfectly organized.</h1>
+    <p class="lead mb-0">Save films, curate collections, and follow lists to decide what to watch tonight.</p>
+  </div>
+</div>
+
+<div class="container mt-4 mb-4 p-3 shadow w-75 bg-white rounded-3">
+  <div class="d-flex justify-content-between">
+    <h2>Movies List</h2>
+    <div class="d-flex p-1">
+     <%= link_to "Add a Movie List", new_list_path, class:"btn btn-primary  ms-3" %>
+    </div>
+  </div>
+  <hr>
+
+    <div class="cards">
+      <% @lists.each do |list| %>
+        <div class="card-category p-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+          url(<%= list.list_image %>)">
+          <%= link_to list.name, list_path(list), class: "text-white text-center text-decoration-none" %>
+        </div>
+      <% end %>
+  </div>
+</div>

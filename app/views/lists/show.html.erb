@@ -1,0 +1,41 @@
+<div
+  class="banner d-flex align-items-center py-5"
+  style="min-height:50vh; min-height:50dvh; background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url(<%= @list.list_image %>)
+    center/cover no-repeat;">
+  <div class="container text-white">
+    <h1 class="display-5 text-center fw-bold mb-2"><%= @list.name %></h1>
+  </div>
+</div>
+
+<div class="container mt-4 p-4 shadow w-75 bg-white rounded-3">
+  <div class="d-flex justify-content-between">
+    <h2>Movies</h2>
+    <div class="d-flex p-1">
+      <%= link_to "Back to Lists", lists_path, class:"btn btn-info" %>
+      <%= link_to "Add a movie", new_list_bookmark_path(@list), class:"btn btn-primary  ms-3" %>
+    </div>
+  </div>
+  <hr>
+  <div class="cards">
+    <% @list.movies.each do |movie| %>
+      <div class="card-trip d-flex flex-column">
+        <%= image_tag(movie.poster_url) %>
+        <div class="card-trip-infos">
+          <div>
+            <div class="d-flex">
+              <h2><%= movie.title %></h2>
+              <h2 class="text-secondary ms-2 mb-3"><%= movie.rating.round(1) %> ⭐</h2>
+            </div>
+            <p><%= movie.overview %></p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center p-3 border-top mt-auto">
+          <h2 class="mb-0"><%= Bookmark.where(movie_id: movie.id, list_id: @list.id).first.comment %></h2>
+          <%= link_to "Delete", bookmark_path(Bookmark.where(movie_id: movie.id, list_id: @list.id).first.id), data: { turbo_method: :delete, turbo_confirm: "Are your sure?" }, class:"text-danger fw-bold text-decoration-none" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

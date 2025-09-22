@@ -2,7 +2,7 @@
   <h1>Create a new Movie List</h1>
      <%= simple_form_for @list do |f| %>
       <%= f.input :name %>
-      <%= f.input :list_image %>
+      <%= f.input :photo, as: :file %>
       <%= f.submit "Create", class:"btn btn-primary" %> <%= link_to "Cancel", lists_path, class: "btn btn-warning" %>
     <% end %>
    <p></p>

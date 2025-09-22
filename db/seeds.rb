@@ -10,13 +10,11 @@
 
 # db/seeds.rb
 
-List.destroy_all
-
 require 'uri'
 require 'net/http'
 require 'json'
 
-url = URI("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=5")
+url = URI("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -36,36 +34,3 @@ results.each do |movie|
     rating: movie['vote_average']
   )
 end
-
-puts "Seeding lists…"
-
-lists = [
-  {
-    name: "Acción",
-    list_image: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Fire_explosions.jpg"
-  },
-  {
-    name: "Romance",
-    list_image: "https://cdn-blog.superprof.com/blog_cl/wp-content/uploads/2023/12/pexels-eugenia-remark-19254469-1-scaled.jpg.webp"
-  },
-  {
-    name: "Ciencia Ficción",
-    list_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg/2048px-Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg"
-  },
-  {
-    name: "Terror",
-    list_image: "https://upload.wikimedia.org/wikipedia/commons/0/00/Foggy_Forest_%28256920249%29.jpeg"
-  },
-  {
-    name: "Comedia",
-    list_image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Mosaic_depicting_theatrical_masks_of_Tragedy_and_Comedy_%28Thermae_Decianae%29.jpg/2525px-Mosaic_depicting_theatrical_masks_of_Tragedy_and_Comedy_%28Thermae_Decianae%29.jpg"
-  },
-  {
-    name: "Western",
-    list_image: "https://www.corbetosboots.com/wp-content/uploads/2022/07/silueta-vaquero-equitacion-caballo_67123-866.jpeg"
-  }
-]
-
-List.create!(lists)
-
-puts "Done! Created #{List.count} lists."

@@ -5,8 +5,8 @@
     url(https://upload.wikimedia.org/wikipedia/commons/d/d3/8_mm_Kodak_safety_film_reel_06.jpg)
     center/cover no-repeat;">
   <div class="container text-white">
-    <h1 class="display-5 fw-bold mb-2">Your movies, perfectly organized.</h1>
-    <p class="lead mb-0">Save films, curate collections, and follow lists to decide what to watch tonight.</p>
+    <h1 class="display-5 fw-bold mb-2">Movie Lists for Movie Lovers</h1>
+    <p class="lead mb-0">Save titles. Sort by mood. Start watching.</p>
   </div>
 </div>
 
@@ -22,7 +22,7 @@
     <div class="cards">
       <% @lists.each do |list| %>
         <div class="card-category p-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-          url(<%= list.list_image %>)">
+          url('<%= cl_image_path list.photo.key %>')">
           <%= link_to list.name, list_path(list), class: "text-white text-center text-decoration-none" %>
         </div>
       <% end %>
